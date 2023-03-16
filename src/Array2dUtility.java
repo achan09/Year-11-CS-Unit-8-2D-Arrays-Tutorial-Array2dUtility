@@ -24,7 +24,7 @@ public class Array2dUtility {
         int sum = 0;
         for(int row = 0; row < array.length; row++)
         {
-            for(int col = 0; col < array[row].length; col++)
+            for(int col = 0; col < array.length; col++)
             {
                 sum += array[row][col];
             }
@@ -39,7 +39,7 @@ public class Array2dUtility {
     public static double average(int[][] array)
     {
         int valuesAmount = array.length * array.length; //number of integers in the whole 2D array
-        return sum(array) / valuesAmount;
+        return (double) sum(array) / valuesAmount;
     }
 
     // 4. minimum
@@ -49,7 +49,7 @@ public class Array2dUtility {
         int min = array[0][0];
         for(int row = 0; row < array.length; row++)
         {
-            for(int col = 0; col < array[row].length; col++)
+            for(int col = 0; col < array.length; col++)
             {
                 if(array[row][col] < min)
                 {
@@ -67,7 +67,7 @@ public class Array2dUtility {
         int max = array[0][0];
         for(int row = 0; row < array.length; row++)
         {
-            for(int col = 0; col < array[row].length; col++)
+            for(int col = 0; col < array.length; col++)
             {
                 if(array[row][col] > max)
                 {
@@ -86,7 +86,7 @@ public class Array2dUtility {
         int numberOfEvens = 0;
         for(int row = 0; row < array.length; row++)
         {
-            for(int col = 0; col < array[row].length; col++)
+            for(int col = 0; col < array.length; col++)
             {
                 if(array[row][col] % 2 == 0)
                 {
@@ -117,14 +117,58 @@ public class Array2dUtility {
 
     // 8. allPositive
     // Implement a method called allPositive that returns true if all the values in a 2D array of integers are positive.
-
+    public static boolean allPositive(int[][] array)
+    {
+        boolean isAllPositive = true;
+        for(int row = 0; row < array.length; row++)
+        {
+            for(int col = 0; col < array.length; col++)
+            {
+                if(array[row][col] < 0)
+                {
+                    isAllPositive = false;
+                }
+            }
+        }
+        return isAllPositive;
+    }
 
     // 9. rowSums
     // Implement a method called rowSums that returns a one dimensional array that contains the sum of each row at each
     // index.
+    public static int[] rowSums(int[][] array)
+    {
+        int[] rowSumsArray = new int[array.length];
+        int currentRowSum = 0;
+        for(int row = 0; row < array.length; row++)
+        {
+            for(int col = 0; col < array.length; col++)
+            {
+                currentRowSum += array[row][col];
+            }
+            rowSumsArray[row] = currentRowSum;
+            currentRowSum = 0;
+        }
+        return rowSumsArray;
+    }
 
     // 10. colSums
     // Implement a method called colSums that returns a one dimensional array that contains the sum of each col at each
     // index.
+    public static int[] colSums(int[][] array)
+    {
+        int[] colSumsArray = new int[array.length];
+        int currentColSum = 0;
+        for(int col = 0; col < array.length; col++)
+        {
+            for(int row = 0; row < array.length; row++)
+            {
+                currentColSum += array[row][col];
+            }
+            colSumsArray[col] = currentColSum;
+            currentColSum = 0;
+        }
+        return colSumsArray;
+    }
 
 }
